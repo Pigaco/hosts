@@ -1,11 +1,9 @@
 #ifndef HOSTS_HOST_H_INCLUDED
 #define HOSTS_HOST_H_INCLUDED
 
-#include "../libpiga/include/piga/Definitions.hpp"
-
-#define HOST_VERSION_MAJOR PIGA_MAJOR_VERSION
-#define HOST_VERSION_MINOR PIGA_MINOR_VERSION
-#define HOST_VERSION_MINI PIGA_MINI_VERSION
+#define HOST_VERSION_MAJOR 0
+#define HOST_VERSION_MINOR 3
+#define HOST_VERSION_MINI 0
 
 #define HOST_UP 0
 #define HOST_DOWN 1
@@ -24,8 +22,6 @@
 #define HOST_RETURNCODE_USEFIXEDFUNCTION 0
 #define HOST_RETURNCODE_USEINPUTMETHODS 1
 #define HOST_RETURNCODE_USECALLBACK 2
-
-#include "../libpiga/include/piga/GameInput.hpp"
 
 /**
  * @brief Initiates the host. 
@@ -52,6 +48,10 @@ extern "C"
     int getButtonState(int playerID, int button);
 }
 
+namespace piga
+{
+    class GameInput;
+}
 extern "C"
 {
     void setGameInput(piga::GameInput *gameInput);
