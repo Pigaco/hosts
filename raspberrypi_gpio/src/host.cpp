@@ -220,6 +220,14 @@ extern "C"
 }
 extern "C"
 {
+    int implementsOutputs()
+    {
+        //This host doesn't implement outputs, so we don't need output handling. 
+        return HOST_RETURNCODE_FALSE;
+    }
+}
+extern "C"
+{
     const char* getName()
     {
         return "WiringPI Raspberry Pi GPIO Input Mapping";

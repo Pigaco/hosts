@@ -126,6 +126,14 @@ extern "C"
         //This serves only as an example.
     }
 }
+extern "C"
+{
+    int implementsOutputs()
+    {
+        //This host doesn't implement outputs, so we don't need output handling. 
+        return HOST_RETURNCODE_FALSE;
+    }
+}
 
 extern "C"
 {
