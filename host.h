@@ -86,8 +86,10 @@ int init(int playerCount);
  */
 int getButtonState(int playerID, int button);
 
+#ifdef __cplusplus
 class GameInput;
 void setGameInput(piga::GameInput *gameInput);
+#endif
 
 /**
  * @brief A shortcut to leave out the implementation of the output functions. 
