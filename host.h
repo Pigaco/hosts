@@ -62,6 +62,14 @@
 #define HOST_OUTPUT_POS_CONTROLS_PLAYER_15 19
 #define HOST_OUTPUT_POS_CONTROLS_PLAYER_16 20
 
+//Bitwise defined position (for further specification of the ositin of the output)
+#define HOST_OUTPUT_POS_1 32
+#define HOST_OUTPUT_POS_2 64
+#define HOST_OUTPUT_POS_3 128
+#define HOST_OUTPUT_POS_4 256
+#define HOST_OUTPUT_POS_5 512
+#define HOST_OUTPUT_POS_6 1024
+
 #ifdef __cplusplus
 extern "C"
 {
