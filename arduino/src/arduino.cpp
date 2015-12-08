@@ -27,9 +27,9 @@ Arduino::Arduino(const char* serialPath, INIReader *config, Mode mode)
 
     /* get current serial port settings */
     tcgetattr(fd, &toptions);
-    /* set 9600 baud both ways */
-    cfsetispeed(&toptions, B9600);
-    cfsetospeed(&toptions, B9600);
+    /* set 115200 baud both ways */
+    cfsetispeed(&toptions, B115200);
+    cfsetospeed(&toptions, B115200);
     /* 8 bits, no parity, no stop bits */
     toptions.c_cflag &= ~PARENB;
     toptions.c_cflag &= ~CSTOPB;
