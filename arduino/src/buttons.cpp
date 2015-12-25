@@ -2,10 +2,11 @@
 
 namespace Buttons
 {
-    config = nullptr;
-    buttonArduino = nullptr;
-
     int getButtonState(int playerID, int buttonID)
+    {
+
+    }
+    void setCallbackFunc(void (*inputHappened)(int, int, int))
     {
 
     }

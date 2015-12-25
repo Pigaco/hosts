@@ -1,11 +1,8 @@
 #include <outputs.hpp>
+#include "../../host_defines.h"
 
 namespace Outputs
 {
-    config = nullptr;
-    outputArduino = nullptr;
-
-
     int implementsOutputs()
     {
         //Yes, this host implements outputs. 

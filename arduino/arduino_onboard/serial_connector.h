@@ -11,6 +11,8 @@ class SerialConnector
 
         void setup();
         void loop();
+        void sendHello();
+        void flush();
 
         void sendInput(uint8_t button, bool state);
         LED** leds;
@@ -19,7 +21,7 @@ class SerialConnector
         void handleShortPacket();
 
         const int m_baudRate;
-        uint8_t m_serialInput[2];
+        uint8_t m_serialInput[3];
 
 };
 
