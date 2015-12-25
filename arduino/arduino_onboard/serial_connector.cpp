@@ -6,6 +6,7 @@
 
 #define PACKET_TYPE_BUTTON      B00000001
 #define PACKET_TYPE_LED         B00000000
+#define PACKET_TYPE_HELLO       B00000010
 
 #define PACKET_LENGTH_SINGLE    B00000000
 #define PACKET_LENGTH_MULTIPLE  B00000100
@@ -66,19 +67,26 @@ void SerialConnector::setup()
 {
     Serial.begin(m_baudRate);
 }
+void SerialConnector::flush()
+{
+    Serial.flush();
+}
 void SerialConnector::loop()
 {
     while(Serial.available() > 0)
     {
+        //Read the new byte into the internal buffer. 
+        Serial.readBytes(m_serialInput[2], 1);
+
         if(m_serialInput[0] & PACKET_LENGTH_MULTIPLE)
         {
-            m_serialInput[1] = Serial.read();
+            m_serialInput[1] = m_serialInput[2];
 
             handleLongPacket();
         }
         else
         {
-            m_serialInput[0] = Serial.read();
+            m_serialInput[0] = m_serialInput[2];
 
             if(m_serialInput[0] & PACKET_LENGTH_SINGLE)
             {
@@ -87,7 +95,11 @@ void SerialConnector::loop()
         }
     }
 }
-
+void SerialConnector::sendHello()
+{
+    byte hello = PACKET_TYPE_HELLO;
+    Serial.write(hello);
+}
 void SerialConnector::handleLongPacket()
 {
     if(m_serialInput[0] & PACKET_TYPE_LED)
@@ -99,7 +111,16 @@ void SerialConnector::handleLongPacket()
 }
 void SerialConnector::handleShortPacket()
 {
-    //There are currently no short packet types. 
+    digitalWrite(13, HIGH);
+    if(m_serialInput[0] & PACKET_TYPE_HELLO)
+    {
+        //This was a hello packet! We need to send a hello packet back.
+        sendHello();
+    }
+    else
+    {
+        Serial.write(B01010101);
+    }
     m_serialInput[0] = 0;
 }
 

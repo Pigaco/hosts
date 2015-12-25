@@ -10,42 +10,45 @@
 #include <buttons.hpp>
 #include <outputs.hpp>
 #include <arduino.hpp>
+#include <INIReader.h>
+#include <main.hpp>
+#include <PlayerManager.hpp>
 
 using std::cout;
-using std::endl
+using std::endl;
 
 INIReader *reader = nullptr;
+PlayerManager *playerMgr = nullptr;
 
 int init(int playerCount)
 {
     //Load the config file.
     reader = new INIReader("host_arduino.ini");
 
-    if(reader.ParseError() < 0)
+    if(reader->ParseError() < 0)
     {
         cout << "[HOST][ARDUINO] Cannot load \"host_arduino.ini\"!" << endl;
-    } else {
+        cout << "[HOST][ARDUINO] Using default configs. This could lead to errors with this host!" << endl;
+    }
+        playerMgr = new PlayerManager(playerCount, reader);
+
+        Buttons::playerMgr = playerMgr;
+        Outputs::playerMgr = playerMgr;
+
         Buttons::config = reader;
         Outputs::config = reader;
-    }
-
-    Buttons::buttonArduino = new Arduino(reader.Get("Buttons", "SerialPath", "/dev/ttyUSB0").c_str(), reader);
-    Outputs::outputArduino = new Arduino(reader.Get("Buttons", "SerialPath", "/dev/ttyUSB1").c_str(), reader);
 
     return HOST_RETURNCODE_USEFIXEDFUNCTION;
 }
+PlayerManager* getPlayerMgr()
+{
+    return playerMgr;
+}
+
 int destroy()
 {
-    delete Buttons::buttonArduino;
-    Buttons::buttonArduino = nullptr;
-
-    delete Outputs::outputArduino;
-    Outputs::outputArduino = nullptr;
-
+    delete playerMgr;
     delete reader;
-    reader = nullptr;
-    Buttons::config = nullptr;
-    Outputs::config = nullptr;
 }
 
 const char* getName()
@@ -75,7 +78,7 @@ int getOutputCount()
 }
 int getOutputType(int outputID)
 {
-    return Outputs::getOutputType(int outputID);
+    return Outputs::getOutputType(outputID);
 }
 int getOutputPos(int outputID)
 {

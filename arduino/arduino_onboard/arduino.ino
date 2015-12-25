@@ -18,7 +18,15 @@ Button *buttons[11];
 
 void setup(void)
 {
+    //Status-LED
+    pinMode(13, OUTPUT);
+    digitalWrite(13, HIGH);
+
     serialConnector.setup();
+
+    //Send the hello signal, so the host knows the arduino is up. 
+    serialConnector.sendHello();
+    serialConnector.flush();
 
     Button::serialConnector = &serialConnector;
 
@@ -30,12 +38,12 @@ void setup(void)
     //!!!!!!!!!!!
     
     //LEDs use the analog pins.
-    leds[0] = new LED(0);
-    leds[1] = new LED(1);
-    leds[2] = new LED(2);
-    leds[3] = new LED(3);
-    leds[4] = new LED(4);
-    leds[5] = new LED(5);
+    leds[0] = new LED(A0);
+    leds[1] = new LED(A1);
+    leds[2] = new LED(A2);
+    leds[3] = new LED(A3);
+    leds[4] = new LED(A4);
+    leds[5] = new LED(A5);
 
     //Buttons use the digital pins.
     buttons[0] = new Button(2, BUTTON_UP);

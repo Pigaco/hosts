@@ -1,12 +1,15 @@
 #pragma once
 
+class INIReader;
+class PlayerManager;
+
 #include <INIReader.h>
 #include <arduino.hpp>
 
 namespace Outputs
 {
-    INIReader *config;
-    Arduino *outputArduino;
+    static INIReader *config;
+    static PlayerManager *playerMgr;
 
     int implementsOutputs();
     int getOutputCount();
