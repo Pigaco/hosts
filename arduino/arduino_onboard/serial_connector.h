@@ -11,17 +11,19 @@ class SerialConnector
 
         void setup();
         void loop();
-        void sendHello();
         void flush();
 
         void sendInput(uint8_t button, bool state);
         LED** leds;
+
+        void sendHello();
+        void handleHello(byte packet);
     private:
         void handleLongPacket();
         void handleShortPacket();
 
         const int m_baudRate;
-        uint8_t m_serialInput[3];
+        char m_serialInput[3];
 
 };
 

@@ -75,20 +75,27 @@ void SerialConnector::loop()
 {
     while(Serial.available() > 0)
     {
+        delay(1);
+        digitalWrite(13, LOW);
+
+
         //Read the new byte into the internal buffer. 
-        Serial.readBytes(m_serialInput[2], 1);
+        Serial.readBytes(&m_serialInput[2], 1);
 
         if(m_serialInput[0] & PACKET_LENGTH_MULTIPLE)
         {
             m_serialInput[1] = m_serialInput[2];
 
             handleLongPacket();
+
+            m_serialInput[0] = 0;
+            m_serialInput[1] = 0;
         }
         else
         {
             m_serialInput[0] = m_serialInput[2];
 
-            if(m_serialInput[0] & PACKET_LENGTH_SINGLE)
+            if(!(m_serialInput[0] & PACKET_LENGTH_MULTIPLE))
             {
                 handleShortPacket();
             }
@@ -97,8 +104,17 @@ void SerialConnector::loop()
 }
 void SerialConnector::sendHello()
 {
-    byte hello = PACKET_TYPE_HELLO;
+    byte hello = 2;
     Serial.write(hello);
+}
+void SerialConnector::handleHello(byte packet)
+{
+    //Turn off the status LED -> Everything OK
+    digitalWrite(13, LOW);
+
+    //Send hello back!
+    sendHello();
+    flush();
 }
 void SerialConnector::handleLongPacket()
 {
@@ -111,15 +127,10 @@ void SerialConnector::handleLongPacket()
 }
 void SerialConnector::handleShortPacket()
 {
-    digitalWrite(13, HIGH);
     if(m_serialInput[0] & PACKET_TYPE_HELLO)
     {
         //This was a hello packet! We need to send a hello packet back.
-        sendHello();
-    }
-    else
-    {
-        Serial.write(B01010101);
+        handleHello(m_serialInput[0]);
     }
     m_serialInput[0] = 0;
 }

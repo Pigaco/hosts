@@ -4,7 +4,7 @@
 
 //If you change the baud rate here, you also have 
 //to change it in the makefile.
-SerialConnector serialConnector(115200);
+SerialConnector serialConnector(9600);
 
 //Workaround for an arduino compiler bug
 void* __dso_handle;
@@ -23,10 +23,7 @@ void setup(void)
     digitalWrite(13, HIGH);
 
     serialConnector.setup();
-
-    //Send the hello signal, so the host knows the arduino is up. 
     serialConnector.sendHello();
-    serialConnector.flush();
 
     Button::serialConnector = &serialConnector;
 
