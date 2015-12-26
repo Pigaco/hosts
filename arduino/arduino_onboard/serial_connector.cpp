@@ -3,41 +3,7 @@
 #include "led.h"
 
 //Input packet defines
-
-#define PACKET_TYPE_BUTTON      B00000001
-#define PACKET_TYPE_LED         B00000000
-#define PACKET_TYPE_HELLO       B00000010
-
-#define PACKET_LENGTH_SINGLE    B00000000
-#define PACKET_LENGTH_MULTIPLE  B00000100
-
-#define BUTTON_STATE_ON         B00001000 
-#define BUTTON_STATE_OFF        B00000000
-
-#define BUTTON_ID_0             B00000000
-#define BUTTON_ID_1             B00010000
-#define BUTTON_ID_2             B00100000
-#define BUTTON_ID_3             B00110000
-#define BUTTON_ID_4             B01000000
-#define BUTTON_ID_5             B01010000
-#define BUTTON_ID_6             B01100000
-#define BUTTON_ID_7             B01110000
-#define BUTTON_ID_8             B10000000
-#define BUTTON_ID_9             B10010000
-#define BUTTON_ID_10            B10100000
-#define BUTTON_ID_11            B10110000
-#define BUTTON_ID_12            B11000000
-#define BUTTON_ID_13            B11010000
-#define BUTTON_ID_14            B11100000
-#define BUTTON_ID_15            B11110000
-
-#define LED_ID_0                B00000000
-#define LED_ID_1                B00001000
-#define LED_ID_2                B00010000
-#define LED_ID_3                B00011000
-#define LED_ID_4                B00100000
-#define LED_ID_5                B00101000
-#define LED_ID_6                B00111000
+#include "serial_protocol.h"
 
 /*
  * LED packet format

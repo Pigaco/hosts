@@ -11,6 +11,8 @@ set(HDRS
     ${HDR}/PlayerManager.hpp
     ${HDR}/main.hpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/arduino_onboard/serial_protocol.h
+
     # INIReader class
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/INIReader.h
 )
