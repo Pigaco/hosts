@@ -5,7 +5,7 @@ ARDUINO_DIR 		= /usr/share/arduino
 AVR_TOOLS_DIR 		= /usr
 AVRDUDE_CONF 		= /etc/avrdude.conf
 ARDUINO_LIBS 		= 
-MONITOR_BAUDRATE 	= 115200
+MONITOR_BAUDRATE 	= 9600
 
 include ../Arduino-Makefile/Arduino.mk 		# The main arduino makefile
 

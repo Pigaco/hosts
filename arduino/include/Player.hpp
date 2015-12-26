@@ -10,6 +10,8 @@ class Player
         ~Player();
 
         void send(char *buffer, int size);
+        int read(char *buffer, int size, bool &read);
+        bool sendHello();
     private:
         std::unique_ptr<Arduino> m_arduino;
 };

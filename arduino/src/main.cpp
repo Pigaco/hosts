@@ -44,11 +44,20 @@ PlayerManager* getPlayerMgr()
 {
     return playerMgr;
 }
-
 int destroy()
 {
     delete playerMgr;
     delete reader;
+
+    playerMgr = nullptr;
+    reader = nullptr;
+
+    Buttons::playerMgr = nullptr;
+    Buttons::config = nullptr;
+    Outputs::playerMgr = nullptr;
+    Outputs::config = nullptr;
+
+    return HOST_RETURNCODE_SUCCESS;
 }
 
 const char* getName()
