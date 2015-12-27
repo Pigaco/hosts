@@ -17,7 +17,7 @@
 #define BUTTON_ID_3             48  // 00110000
 #define BUTTON_ID_4             64  // 01000000
 #define BUTTON_ID_5             80  // 01010000
-#define BUTTON_ID_6             86  // 01100000
+#define BUTTON_ID_6             96  // 01100000
 #define BUTTON_ID_7             112 // 01110000
 #define BUTTON_ID_8             128 // 10000000
 #define BUTTON_ID_9             144 // 10010000
