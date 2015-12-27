@@ -7,7 +7,7 @@
 
 
 #define HOST_VERSION_MAJOR 0
-#define HOST_VERSION_MINOR 4
+#define HOST_VERSION_MINOR 5
 #define HOST_VERSION_MINI 0
 
 #define HOST_UP 0
@@ -74,3 +74,6 @@
 #define HOST_OUTPUT_POS_4 256
 #define HOST_OUTPUT_POS_5 512
 #define HOST_OUTPUT_POS_6 1024
+
+//Typedef for the callback function function pointer
+typedef void (*host_input_callback_func)(int, int, int);

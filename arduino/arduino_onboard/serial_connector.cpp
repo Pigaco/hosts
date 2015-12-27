@@ -32,6 +32,8 @@ SerialConnector::~SerialConnector()
 void SerialConnector::setup()
 {
     Serial.begin(m_baudRate);
+    sendHello();
+    flush();
 }
 void SerialConnector::flush()
 {
@@ -42,8 +44,6 @@ void SerialConnector::loop()
     while(Serial.available() > 0)
     {
         delay(1);
-        digitalWrite(13, LOW);
-
 
         //Read the new byte into the internal buffer. 
         Serial.readBytes(&m_serialInput[2], 1);
@@ -77,10 +77,6 @@ void SerialConnector::handleHello(byte packet)
 {
     //Turn off the status LED -> Everything OK
     digitalWrite(13, LOW);
-
-    //Send hello back!
-    sendHello();
-    flush();
 }
 void SerialConnector::handleLongPacket()
 {

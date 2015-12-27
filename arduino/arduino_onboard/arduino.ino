@@ -23,7 +23,6 @@ void setup(void)
     digitalWrite(13, HIGH);
 
     serialConnector.setup();
-    serialConnector.sendHello();
 
     Button::serialConnector = &serialConnector;
 

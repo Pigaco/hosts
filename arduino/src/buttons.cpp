@@ -1,13 +1,10 @@
 #include <buttons.hpp>
+#include <PlayerManager.hpp>
 
 namespace Buttons
 {
-    int getButtonState(int playerID, int buttonID)
+    void setCallbackFunc(void *callback)
     {
-
-    }
-    void setCallbackFunc(void (*inputHappened)(int, int, int))
-    {
-
+        playerMgr->setCallbackFunc(callback);
     }
 }

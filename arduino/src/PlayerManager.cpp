@@ -13,8 +13,9 @@ PlayerManager::PlayerManager(const int playerCount, INIReader *config)
         std::unique_ptr<Arduino> arduino(new Arduino(config->Get(("Player" + std::to_string(i)).c_str(), 
                         "SerialInterface",
                         ("/dev/ttyUSB" + std::to_string(i)).c_str()).c_str(), 
-                    config));
-        std::unique_ptr<Player> player(new Player(std::move(arduino)));
+                    config,
+                    i));
+        std::unique_ptr<Player> player(new Player(std::move(arduino), i));
 
         m_players.push_back(std::move(player));
     }
@@ -23,7 +24,13 @@ PlayerManager::~PlayerManager()
 {
 
 }
-
+void PlayerManager::setCallbackFunc(void *callback)
+{
+    for(std::size_t i = 0; i < m_playerCount; ++i)
+    {
+        m_players[i]->setCallbackFunc(callback);
+    }
+}
 void PlayerManager::send(char *buffer, int size, int player)
 {
     if(player == -1)
@@ -47,6 +54,8 @@ int PlayerManager::read(char *buffer, int size, bool &read, int player)
     {
         return m_players[player]->read(buffer, size, read);
     }
+    read = false;
+    return 0;
 }
 void PlayerManager::sendHello(int player, bool output)
 {
@@ -70,5 +79,12 @@ void PlayerManager::sendHello(int player, bool output)
                 cout << "[Hello] Player " << player << " - Success: " << success << endl;
             }
         }
+    }
+}
+void PlayerManager::printReady()
+{
+    for(std::size_t i = 0; i < m_playerCount; ++i)
+    {
+        m_players[i]->printReady();
     }
 }
