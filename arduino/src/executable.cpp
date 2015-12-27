@@ -14,11 +14,6 @@ using std::cin;
 int init(int playerCount);
 int destroy();
 
-#define HELPTEXT "q   exit the program \n" \
-    "h   this help text\n" \
-    "led <player> <number> <intensity> set led level \n" \
-    "inp print inputs.\n"
-
 bool readCommand(int playerCount) {
     bool success = false;
 
@@ -43,6 +38,19 @@ int main()
 {
     int playerCount = 2;
 
+    cout << "Arduino Debugger" << endl;
+    cout << "================" << endl;
+    cout << " q     exit" << endl;
+    cout << " tst   send test (hello) packet without check" << endl;
+    cout << " rd    try to read one byte from all players" << endl;
+    cout << " rdl   read as long as data (!= 0) is coming" << endl;
+    cout << " hel   send a hello packet to every player and check" << endl;
+    cout << " rdy   print the READY state of all players" << endl;
+    cout << " rei   re-initialize the host (fast restart)" << endl;
+    cout << " dbg   turn debug on/off (prints every received packet)" << endl << endl;
+    cout << "Compiled with piga host library version " << HOST_VERSION_MAJOR
+         << "." << HOST_VERSION_MINOR << "." << HOST_VERSION_MINI << endl << endl;
+
     init(playerCount);
 
     bool end = false;
@@ -51,13 +59,12 @@ int main()
     while(!end) 
     {
         cout << ">> ";
-        cin >> input;
+        std::cin.clear();
+        std::getline(cin, input);
         cout << "COMMAND: \"" << input << "\"" << endl;
 
         if(input == "q" || input == "quit" || input == "exit") {
             end = true;
-        } else if(input == "h" || input == "?" || input == "help") {
-            cout << HELPTEXT << endl;
         } else if(input == "tst") {
             cout << "Sending TEST (Hello) packet" << endl;
             char hello[1];
@@ -73,6 +80,11 @@ int main()
             while(readCommand(playerCount));
         } else if(input == "hel") {
             getPlayerMgr()->sendHello(-1, true);
+        } else if(input == "dbg") {
+            cout << "Toggle Debug from " << Arduino::debug << " to " << !Arduino::debug << endl;
+            Arduino::debug = !Arduino::debug;
+        } else if(input == "rdy") {
+            getPlayerMgr()->printReady();
         }
     }
 

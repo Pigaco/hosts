@@ -63,6 +63,8 @@ namespace Outputs
                 pos = pos | HOST_OUTPUT_POS_6;
                 break;
         }
+
+        return pos;
     }
 
 #define SWITCH_OUTPUT_NAME_CASE(CASENUM, PLAYER, ID) case CASENUM: return "Player " PLAYER " - Button " ID " LED"; 
@@ -114,6 +116,7 @@ namespace Outputs
         {
             return 0;
         }
+        return 0;
     }
     int getIntOutputRangeMax(int outputID)
     {
@@ -121,6 +124,7 @@ namespace Outputs
         {
             return 255;
         }
+        return 0;
     }
 
     int setIntOutput(int outputID, int value)

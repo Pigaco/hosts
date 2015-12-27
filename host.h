@@ -149,8 +149,10 @@ int setDoubleOutput(int outputID, double value);
  *
  * This function will only be called when @ref HOST_RETURNCODE_USECALLBACK
  * is set.
+ *
+ * Parameters for the input callback function: ControlCode/ButtonID, PlayerID, state
  */
-void setCallbackFunc(void (*inputHappened)(int, int, int));
+void setCallbackFunc(void *callback);
 
 /**
  * @brief Gets called before the host will be destroyed. 

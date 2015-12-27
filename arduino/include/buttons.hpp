@@ -4,12 +4,12 @@ class INIReader;
 class PlayerManager;
 
 #include <arduino.hpp>
+#include "../host_defines.h"
 
 namespace Buttons
 {
     static INIReader *config;
     static PlayerManager* playerMgr;
 
-    int getButtonState(int playerID, int buttonID);
-    void setCallbackFunc(void (*inputHappened)(int, int, int));
+    void setCallbackFunc(void *callback);
 }
