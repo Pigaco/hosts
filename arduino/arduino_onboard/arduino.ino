@@ -42,17 +42,17 @@ void setup(void)
     leds[5] = new LED(A5);
 
     //Buttons use the digital pins.
-    buttons[0] = new Button(2, BUTTON_UP);
-    buttons[1] = new Button(3, BUTTON_DOWN);
-    buttons[2] = new Button(4, BUTTON_LEFT);
-    buttons[3] = new Button(5, BUTTON_RIGHT);
-    buttons[4] = new Button(6, BUTTON_ACTION);
-    buttons[5] = new Button(7, BUTTON_BUTTON1);
-    buttons[6] = new Button(8, BUTTON_BUTTON2);
-    buttons[7] = new Button(9, BUTTON_BUTTON3);
-    buttons[8] = new Button(10, BUTTON_BUTTON4);
-    buttons[9] = new Button(11, BUTTON_BUTTON5);
-    buttons[10] = new Button(12, BUTTON_BUTTON6);
+    buttons[0] = new Button(10, BUTTON_UP);
+    buttons[1] = new Button(11, BUTTON_DOWN);
+    buttons[2] = new Button(12, BUTTON_LEFT);
+    buttons[3] = new Button(2, BUTTON_RIGHT);
+    buttons[4] = new Button(9, BUTTON_ACTION);
+    buttons[5] = new Button(3, BUTTON_BUTTON1);
+    buttons[6] = new Button(4, BUTTON_BUTTON2);
+    buttons[7] = new Button(5, BUTTON_BUTTON3);
+    buttons[8] = new Button(6, BUTTON_BUTTON4);
+    buttons[9] = new Button(7, BUTTON_BUTTON5);
+    buttons[10] = new Button(8, BUTTON_BUTTON6);
 
     serialConnector.leds = leds;
 }
