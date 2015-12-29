@@ -1,4 +1,4 @@
-# Arduino On-Board code
+# Arduino On-Board code {#host_arduino_onboard}
 
 This code is compiled using the [arduino makefile](https://github.com/sudar/Arduino-Makefile), explained 
 [here](http://hardwarefun.com/tutorials/compiling-arduino-sketches-using-makefile)
