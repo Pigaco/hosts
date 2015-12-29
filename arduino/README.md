@@ -1,5 +1,4 @@
 Arduino Host {#host_arduino}
-====================
 
 This host uses an arduino to get signals from the buttons and joysticks and to 
 set the output levels of 6 LEDs per player. The host can control multiple 
