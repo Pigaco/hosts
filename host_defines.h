@@ -1,3 +1,6 @@
+#ifndef HOST_DEFINES_H_INCLUDED
+#define HOST_DEFINES_H_INCLUDED
+
 /*
  * This file holds all defines necessary for the host.
  *
@@ -77,3 +80,5 @@
 
 //Typedef for the callback function function pointer
 typedef void (*host_input_callback_func)(int, int, int);
+
+#endif
