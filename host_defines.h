@@ -1,3 +1,6 @@
+#ifndef HOST_DEFINES_H_INCLUDED
+#define HOST_DEFINES_H_INCLUDED
+
 /*
  * This file holds all defines necessary for the host.
  *
@@ -47,7 +50,7 @@
 //Different positions of the output possibilities
 #define HOST_OUTPUT_POS_FRONT 0
 #define HOST_OUTPUT_POS_LEFT 1
-#define HOST_PUTPUT_POS_RIGHT 2
+#define HOST_OUTPUT_POS_RIGHT 2
 #define HOST_OUTPUT_POS_UPPER_FRONT 3
 #define HOST_OUTPUT_POS_LOWER_FRONT 4
 #define HOST_OUTPUT_POS_CONTROLS_PLAYER_1 5
@@ -77,3 +80,5 @@
 
 //Typedef for the callback function function pointer
 typedef void (*host_input_callback_func)(int, int, int);
+
+#endif
