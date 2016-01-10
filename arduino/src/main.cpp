@@ -38,7 +38,7 @@ int init(int playerCount)
         Buttons::config = reader;
         Outputs::config = reader;
 
-    return HOST_RETURNCODE_USEFIXEDFUNCTION;
+    return HOST_RETURNCODE_USECALLBACK;
 }
 PlayerManager* getPlayerMgr()
 {
