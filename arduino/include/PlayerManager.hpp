@@ -4,6 +4,7 @@
 #include <memory>
 
 #include <Player.hpp>
+#include "../../host_defines.h"
 
 class INIReader;
 
@@ -13,7 +14,7 @@ class PlayerManager
         PlayerManager(const int playerCount, INIReader *config);
         ~PlayerManager();
 
-        void setCallbackFunc(void *callback);
+        void setCallbackFunc(host_input_callback_func callback);
 
         void send(char *buffer, int size, int player = -1);
         int read(char *buffer, int size, bool &read, int player);

@@ -11,7 +11,7 @@ class Player
         ~Player();
 
         // Host-Communication with the piga library
-        void setCallbackFunc(void *callback);
+        void setCallbackFunc(host_input_callback_func callback);
 
         // High-Level Communication
 

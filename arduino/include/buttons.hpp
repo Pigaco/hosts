@@ -11,5 +11,5 @@ namespace Buttons
     static INIReader *config;
     static PlayerManager* playerMgr;
 
-    void setCallbackFunc(void *callback);
+    void setCallbackFunc(host_input_callback_func callback);
 }

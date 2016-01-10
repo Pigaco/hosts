@@ -73,7 +73,7 @@ const char* getAuthor()
     return "Max Heisinger";
 }
 
-void setCallbackFunc(void *callback)
+void setCallbackFunc(host_input_callback_func callback)
 {
     Buttons::setCallbackFunc(callback);
 }
