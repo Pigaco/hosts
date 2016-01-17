@@ -9,6 +9,11 @@ sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/worksp
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/build && make package"
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/build && make install"
 
+echo "Build Arduino Host"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "mkdir -p /root/jenkins/workspace/libhosts/arduino/build"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && cmake .."
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && make"
+
 echo "Add the package to the repository"
 PIGA_DEB="$(ls /var/lib/jenkins/workspace/libhosts/build/*deb)"
 echo "DEBFILE: $PIGA_DEB"
