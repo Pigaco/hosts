@@ -1,6 +1,7 @@
 #include <iostream>
 #include <PlayerManager.hpp>
 #include <INIReader.h>
+#include "../../host_defines.h"
 
 using std::cout;
 using std::endl;
@@ -24,7 +25,7 @@ PlayerManager::~PlayerManager()
 {
 
 }
-void PlayerManager::setCallbackFunc(void *callback)
+void PlayerManager::setCallbackFunc(host_input_callback_func callback)
 {
     for(std::size_t i = 0; i < m_playerCount; ++i)
     {

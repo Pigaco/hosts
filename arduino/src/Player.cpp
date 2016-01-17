@@ -14,7 +14,7 @@ Player::~Player()
 {
 
 }
-void Player::setCallbackFunc(void *callback)
+void Player::setCallbackFunc(host_input_callback_func callback)
 {
     m_arduino->registerSinglePacketCallback([&](uint8_t packet) {
         if(packet & PACKET_TYPE_BUTTON) {

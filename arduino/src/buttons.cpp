@@ -1,10 +1,12 @@
 #include <buttons.hpp>
 #include <PlayerManager.hpp>
+#include "../../host_defines.h"
+#include <main.hpp>
 
 namespace Buttons
 {
-    void setCallbackFunc(void *callback)
+    void setCallbackFunc(host_input_callback_func callback)
     {
-        playerMgr->setCallbackFunc(callback);
+        getPlayerMgr()->setCallbackFunc(callback);
     }
 }

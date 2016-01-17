@@ -152,7 +152,7 @@ int setDoubleOutput(int outputID, double value);
  *
  * Parameters for the input callback function: ControlCode/ButtonID, PlayerID, state
  */
-void setCallbackFunc(void *callback);
+void setCallbackFunc(host_input_callback_func callback);
 
 /**
  * @brief Gets called before the host will be destroyed. 

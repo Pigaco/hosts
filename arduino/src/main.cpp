@@ -38,7 +38,7 @@ int init(int playerCount)
         Buttons::config = reader;
         Outputs::config = reader;
 
-    return HOST_RETURNCODE_USEFIXEDFUNCTION;
+    return HOST_RETURNCODE_USECALLBACK;
 }
 PlayerManager* getPlayerMgr()
 {
@@ -73,7 +73,7 @@ const char* getAuthor()
     return "Max Heisinger";
 }
 
-void setCallbackFunc(void *callback)
+void setCallbackFunc(host_input_callback_func callback)
 {
     Buttons::setCallbackFunc(callback);
 }
