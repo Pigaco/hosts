@@ -42,3 +42,16 @@ install(
   DESTINATION
     ${ConfigPackageLocation}
 )
+
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Header files for hosts development and compilation.")
+set(CPACK_PACKAGE_VENDOR "Pigaco")
+set(CPACK_PACKAGE_VERSION_MAJOR ${HOSTS_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${HOSTS_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${HOSTS_VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_TWEAK ${HOSTS_VERSION_TWEAK})
+set(CPACK_DEBIAN_PACKAGE_HOMEPAHE "https://github.com/pigaco/hosts")
+set(CPACK_DEBIAN_PACKAGE_NAME "piga-libhosts-dev")
+set(CPACK_PACKAGE_NAME "piga-libhosts-dev")
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Max Heisinger <mail@maximaximal.com>")
+include(CPack)
