@@ -25,7 +25,7 @@ void Player::setCallbackFunc(host_input_callback_func callback)
             }
 
             //Call the callback function from the piga system.
-            ((host_input_callback_func) callback)(buttonID, m_playerID, state);
+            callback(buttonID, m_playerID, state);
 
             if(Arduino::debug) {
                 cout << endl << "[ARDUINO] Button packet (" << buttonID << ":" << state << ")" << endl;
