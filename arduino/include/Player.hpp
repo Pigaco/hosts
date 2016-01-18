@@ -21,8 +21,11 @@ class Player
         int read(char *buffer, int size, bool &read);
         bool sendHello();
         void printReady();
+
+        void arduinoCallback(uint8_t packet);
     private:
         std::unique_ptr<Arduino> m_arduino;
         host_input_callback_func m_callback;
         int m_playerID;
+        host_input_callback_func m_callbackFunc;
 };
