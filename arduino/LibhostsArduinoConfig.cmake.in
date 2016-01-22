@@ -1,0 +1,16 @@
+# Defines
+#    - LibhostsArduino_LIBRARIES
+#    - LibhostsArduino_INCLUDE_DIRS
+
+find_library(LibhostsArduino_LIBRARY host_arduino_serial
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+    HINTS host_arduino_seria libhost_arduino_serial
+    NO_DEFAULT_PATH
+)
+
+find_path(LibhostsArduino_INCLUDE_DIRS piga/hosts/arduino/main.hpp
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+    NO_DEFAULT_PATH
+)
+
+set(LibhostsArduino_LIBRARIES ${LibhostsArduino_LIBRARY})
