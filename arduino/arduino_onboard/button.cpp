@@ -2,20 +2,20 @@
 #include "button.h"
 #include "serial_connector.h"
 
-#define BOUNCE_LOCK_OUT
-#include "bounce2/Bounce2.h"
+//Dirty Hack. This is an arduino, I hope this doesnt't offend anyone. It works, that's enough for this onboard code. 
+//TODO make a better version of the Bounce2 include.
+#include "bounce2/Bounce2.cpp"
 
 SerialConnector* Button::serialConnector = 0;
-int Button::m_cacheVal = 0;
 
 Button::Button(const uint8_t pin, const uint8_t button)
-    : m_pin(pin), m_button(button), m_pinBouncer()
+    : m_button(button)
 {
     pinMode(pin, INPUT);
     digitalWrite(pin, HIGH);
 
     m_pinBouncer.attach(pin);
-    m_pinBouncer(BUTTON_BOUNCE_INTERVAL);
+    m_pinBouncer.interval(BUTTON_BOUNCE_INTERVAL);
 }
 Button::~Button()
 {
@@ -24,9 +24,10 @@ Button::~Button()
 
 void Button::loop()
 {
-    if(m_pinBouncer.update() != 0) 
+    if(m_pinBouncer.update()) 
     {
-        if(m_pinBouncer.read() == 1)
+        //Only update if the button has a new state. 
+        if(m_pinBouncer.read())
         {
             //Button went from LOW to HIGH
             serialConnector->sendInput(m_button, true);

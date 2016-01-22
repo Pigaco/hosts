@@ -4,6 +4,9 @@
 // The button bounce interval for the Bounce2 library (in ms).
 #define BUTTON_BOUNCE_INTERVAL 3
 
+#define BOUNCE_LOCK_OUT
+#include "bounce2/Bounce2.h"
+
 //Taken from the host api
 #define BUTTON_UP 0
 #define BUTTON_DOWN 1
@@ -29,7 +32,6 @@ class Button
 
         static SerialConnector* serialConnector;
     private:
-        const uint8_t m_pin;
         Bounce m_pinBouncer;
         /**
          * Button-IDs:
