@@ -1,6 +1,9 @@
 #ifndef BUTTON_H_INCLUDED
 #define BUTTON_H_INCLUDED
 
+// The button bounce interval for the Bounce2 library (in ms).
+#define BUTTON_BOUNCE_INTERVAL 3
+
 //Taken from the host api
 #define BUTTON_UP 0
 #define BUTTON_DOWN 1
@@ -24,11 +27,10 @@ class Button
 
         void loop();
 
-        void updateCache();
-
         static SerialConnector* serialConnector;
     private:
         const uint8_t m_pin;
+        Bounce m_pinBouncer;
         /**
          * Button-IDs:
          *
@@ -49,11 +51,6 @@ class Button
          *   - 10: BUTTON 6
          */
         const uint8_t m_button;
-
-        bool m_currentState = false;
-
-        //Cache value for getting the current button state. Static to save memory.
-        static int m_cacheVal;
 };
 
 #endif
