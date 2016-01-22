@@ -9,14 +9,22 @@ sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/worksp
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/build && make package"
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/build && make install"
 
-echo "Build Arduino Host"
-sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "mkdir -p /root/jenkins/workspace/libhosts/arduino/build"
-sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && cmake .."
-sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && make"
-
-echo "Add the package to the repository"
+echo "Add the hosts package to the repository"
 PIGA_DEB="$(ls /var/lib/jenkins/workspace/libhosts/build/*deb)"
 echo "DEBFILE: $PIGA_DEB"
 cd /media/maximaximal.com/www/repos/apt/debian && sudo reprepro includedeb jessie "$PIGA_DEB"
+
+echo "Build Arduino Host"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "mkdir -p /root/jenkins/workspace/libhosts/arduino/build"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "rm -f /root/jenkins/workspace/libhosts/arduino/piga-libhosts-arduino*"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && cmake .. -DARDUINO_HOST_VERSION_PATCH="\""$(cat /var/lib/jenkins/jobs/libhosts/nextBuildNumber)"\"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && make package"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && make install"
+
+echo "Add the arduino host package to the repository"
+PIGA_DEB="$(ls /var/lib/jenkins/workspace/libhosts/arduino/build/*deb)"
+echo "DEBFILE: $PIGA_DEB"
+cd /media/maximaximal.com/www/repos/apt/debian && sudo reprepro includedeb jessie "$PIGA_DEB"
+
 
 /opt/chroots/debian_jessie_x32/umount_jenkins.sh
