@@ -1,3 +1,6 @@
 [submodule "arduino/Arduino-Makefile"]
 	path = arduino/Arduino-Makefile
 	url = https://github.com/sudar/Arduino-Makefile.git
+[submodule "arduino/arduino_onboard/bounce2"]
+	path = arduino/arduino_onboard/bounce2
+	url = https://github.com/thomasfredericks/Bounce2.git
