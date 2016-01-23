@@ -16,7 +16,7 @@ cd /media/maximaximal.com/www/repos/apt/debian && sudo reprepro includedeb jessi
 
 echo "Build Arduino Host"
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "mkdir -p /root/jenkins/workspace/libhosts/arduino/build"
-sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "rm -f /root/jenkins/workspace/libhosts/arduino/piga-libhosts-arduino*"
+sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "rm -f /root/jenkins/workspace/libhosts/arduino/build/piga-libhosts-arduino*"
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && cmake .. -DARDUINO_HOST_VERSION_PATCH="\""$(cat /var/lib/jenkins/jobs/libhosts/nextBuildNumber)"\"
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && make package"
 sudo chroot /opt/chroots/debian_jessie_x32 /bin/bash -c "cd /root/jenkins/workspace/libhosts/arduino/build && make install"
