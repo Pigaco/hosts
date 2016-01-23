@@ -2,10 +2,6 @@
 #include "button.h"
 #include "serial_connector.h"
 
-//Dirty Hack. This is an arduino, I hope this doesnt't offend anyone. It works, that's enough for this onboard code. 
-//TODO make a better version of the Bounce2 include.
-#include "bounce2/Bounce2.cpp"
-
 SerialConnector* Button::serialConnector = 0;
 
 Button::Button(const uint8_t pin, const uint8_t button)

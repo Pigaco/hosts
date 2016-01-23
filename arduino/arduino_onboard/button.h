@@ -5,7 +5,7 @@
 #define BUTTON_BOUNCE_INTERVAL 3
 
 #define BOUNCE_LOCK_OUT
-#include "bounce2/Bounce2.h"
+#include "Bounce2.h"
 
 //Taken from the host api
 #define BUTTON_UP 0
