@@ -2,7 +2,7 @@
 #define BUTTON_H_INCLUDED
 
 // The button bounce interval for the Bounce2 library (in ms).
-#define BUTTON_BOUNCE_INTERVAL 3
+#define BUTTON_BOUNCE_INTERVAL 8
 
 #define BOUNCE_LOCK_OUT
 #include "Bounce2.h"

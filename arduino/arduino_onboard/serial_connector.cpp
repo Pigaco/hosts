@@ -31,9 +31,10 @@ SerialConnector::~SerialConnector()
 
 void SerialConnector::setup()
 {
-    Serial.begin(m_baudRate);
-    sendHello();
+    Serial.begin(m_baudRate, SERIAL_8N1);
     flush();
+    Serial.write("Hello Flush");
+    sendHello();
 }
 void SerialConnector::flush()
 {
@@ -77,6 +78,8 @@ void SerialConnector::handleHello(byte packet)
 {
     //Turn off the status LED -> Everything OK
     digitalWrite(13, LOW);
+    sendHello();
+    flush();
 }
 void SerialConnector::handleLongPacket()
 {

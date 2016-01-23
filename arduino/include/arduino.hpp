@@ -5,6 +5,8 @@
 #include <functional>
 
 class INIReader;
+class QSerialPort;
+class QSerialPortInfo;
 
 class Arduino
 {
@@ -34,7 +36,7 @@ class Arduino
     private:
         std::string m_serialPath;
         INIReader *m_config;
-        int m_fd;
+        QSerialPort *m_serialPort;
         const int m_timeout = 200000;
         bool m_ready = false;
 

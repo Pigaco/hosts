@@ -6,6 +6,8 @@
 #include <main.hpp>
 #include <buttons.hpp>
 #include <PlayerManager.hpp>
+#include <QSerialPortInfo>
+#include <QCoreApplication>
 
 using std::cout;
 using std::endl;
@@ -34,8 +36,9 @@ bool readCommand(int playerCount) {
     return success;
 }
 
-int main()
+int main(int argc, char** argv)
 {
+    QCoreApplication app(argc, argv);
     int playerCount = 2;
 
     cout << "Arduino Debugger" << endl;
@@ -47,7 +50,8 @@ int main()
     cout << " hel   send a hello packet to every player and check" << endl;
     cout << " rdy   print the READY state of all players" << endl;
     cout << " rei   re-initialize the host (fast restart)" << endl;
-    cout << " dbg   turn debug on/off (prints every received packet)" << endl << endl;
+    cout << " dbg   turn debug on/off (prints every received packet)" << endl;
+    cout << " spl   lists all available serial ports through QSerialPortInfo::availablePorts" << endl << endl;
     cout << "Compiled with piga host library version " << HOST_VERSION_MAJOR
          << "." << HOST_VERSION_MINOR << "." << HOST_VERSION_MINI << endl << endl;
 
@@ -58,6 +62,7 @@ int main()
 
     while(!end) 
     {
+        app.processEvents();
         cout << ">> ";
         std::cin.clear();
         std::getline(cin, input);
@@ -85,6 +90,13 @@ int main()
             Arduino::debug = !Arduino::debug;
         } else if(input == "rdy") {
             getPlayerMgr()->printReady();
+        } else if(input == "spl") {
+            QList<QSerialPortInfo> availablePorts = QSerialPortInfo::availablePorts();
+            cout << "Available Serial Ports:" << endl;
+            for(QSerialPortInfo &port : availablePorts)
+            {
+                cout << "  - \"" << port.portName().toStdString() << "\" (\"" << port.systemLocation().toStdString() << "\")" << endl;
+            }
         }
     }
 

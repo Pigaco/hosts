@@ -41,6 +41,12 @@ set(SRCS
 
 add_library(host_arduino_serial SHARED ${SRCS} ${HDRS})
 
+find_package(Qt5SerialPort)
+add_definitions(-DQT_NO_KEYWORDS)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+target_link_libraries(host_arduino_serial Qt5::SerialPort)
+
 add_executable(debugger ${SRC}/executable.cpp)
 target_link_libraries(debugger host_arduino_serial)
 
