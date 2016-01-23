@@ -14,3 +14,6 @@ find_path(LibhostsArduino_INCLUDE_DIRS piga/hosts/arduino/main.hpp
 )
 
 set(LibhostsArduino_LIBRARIES ${LibhostsArduino_LIBRARY})
+
+find_package(Qt5SerialPort)
+list(APPEND LibhostsArduino_LIBRARIES Qt5::SerialPort)

@@ -108,6 +108,8 @@ set(CPACK_PACKAGE_VERSION_TWEAK ${ARDUINO_HOST_VERSION_TWEAK})
 set(CPACK_DEBIAN_PACKAGE_HOMEPAHE "https://github.com/pigaco/hosts")
 set(CPACK_DEBIAN_PACKAGE_NAME "piga-libhosts-arduino")
 set(CPACK_PACKAGE_NAME "piga-libhosts-arduino")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS
+    "libqt5serialport5 (>= 5.3.2-2)")
 set(CPACK_GENERATOR "DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Max Heisinger <mail@maximaximal.com>")
 include(CPack)
