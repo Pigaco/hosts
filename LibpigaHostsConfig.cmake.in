@@ -3,5 +3,4 @@
 
 find_path(LibpigaHosts_INCLUDE_DIRS piga/hosts/host.h
     PATHS ${CMAKE_INSTALL_PREFIX}/include
-    NO_DEFAULT_PATH
 )
